@@ -393,29 +393,36 @@ class BeachRockMapApp {
     
     async loadStats(filters = {}) {
         try {
-            // Total count
+            // Total count (always shows total in database)
             const { count: totalCount } = await window.supabaseClient.from('beachrocks').select('*', { count: 'exact', head: true });
-            
-            // Countries count
-            const { data: countryData } = await window.supabaseClient.from('beachrocks').select('country').not('country', 'is', null);
-            const countries = new Set(countryData.map(p => p.country)).size;
-            
-            // Oceans/Seas count
-            const { data: oceanData } = await window.supabaseClient.from('beachrocks').select('ocean_sea').not('ocean_sea', 'is', null);
-            const oceans = new Set(oceanData.map(p => p.ocean_sea)).size;
-            
-            // Cement types count
-            const { data: cementData } = await window.supabaseClient.from('beachrocks').select('cement_type').not('cement_type', 'is', null);
-            const cementTypes = new Set(cementData.map(p => p.cement_type)).size;
-            
             document.getElementById('total-beachrocks').textContent = totalCount.toLocaleString();
-            document.getElementById('total-countries').textContent = countries.toLocaleString();
-            document.getElementById('total-oceans').textContent = oceans.toLocaleString();
-            document.getElementById('total-cement-types').textContent = cementTypes.toLocaleString();
+            
+            // Visible stats are calculated from currentData (filtered data)
+            this.updateVisibleStats();
         } catch (error) {
             console.error('Error loading stats:', error);
         }
     }
+    
+    updateVisibleStats() {
+        const data = this.currentData || [];
+        
+        // Visible countries
+        const countries = new Set(data.filter(p => p.country).map(p => p.country)).size;
+        document.getElementById('visible-countries').textContent = countries.toLocaleString();
+        
+        // Visible oceans/seas
+        const oceans = new Set(data.filter(p => p.ocean_sea).map(p => p.ocean_sea)).size;
+        document.getElementById('visible-oceans').textContent = oceans.toLocaleString();
+        
+        // Visible cement types
+        const cementTypes = new Set(data.filter(p => p.cement_type).map(p => p.cement_type)).size;
+        document.getElementById('visible-cement-types').textContent = cementTypes.toLocaleString();
+        
+        // Visible points count
+        document.getElementById('visible-points').textContent = data.length.toLocaleString();
+    }
+
     
     async loadBeachrockData(filters = {}) {
         if (this.isLoading) return;
@@ -444,7 +451,7 @@ class BeachRockMapApp {
             console.log(`✅ Loaded ${data.length} beachrocks`);
             this.currentData = data;
             this.updateMap();
-            this.updateVisiblePointsCount();
+            this.updateVisibleStats();
             
         } catch (error) {
             console.error('❌ Error loading beachrock data:', error);
@@ -527,7 +534,7 @@ class BeachRockMapApp {
             if (bounds.isValid()) this.map.fitBounds(bounds.pad(0.05));
         }
         
-        this.updateVisiblePointsCount();
+        this.updateVisibleStats();
     }
     
     getMarkerColor(beachrock) {
