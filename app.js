@@ -70,7 +70,7 @@ class BeachRockMapApp {
             })
         };
         
-        baseMaps["OpenStreetMap"].addTo(this.map);
+        baseMaps["CartoDB Positron"].addTo(this.map);
         
         L.control.layers(baseMaps, null, {
             position: 'topright',
