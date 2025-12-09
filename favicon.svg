@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0066cc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#003366;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a574;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a67c52;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#oceanGrad)" stroke="#fff" stroke-width="2"/>
+  <!-- Beach/rock formation -->
+  <path d="M10 65 Q25 55 40 60 Q55 65 70 58 Q85 52 95 60 L95 85 Q75 80 50 82 Q25 84 10 80 Z" fill="url(#sandGrad)" opacity="0.9"/>
+  <!-- Rock texture lines -->
+  <path d="M20 68 Q35 63 50 67 Q65 71 80 65" fill="none" stroke="#8b6914" stroke-width="1.5" opacity="0.6"/>
+  <path d="M15 75 Q40 70 60 73 Q80 76 90 72" fill="none" stroke="#8b6914" stroke-width="1.5" opacity="0.6"/>
+  <!-- Wave lines -->
+  <path d="M5 50 Q20 45 35 50 Q50 55 65 50 Q80 45 95 50" fill="none" stroke="#fff" stroke-width="2" opacity="0.5"/>
+  <path d="M5 42 Q20 37 35 42 Q50 47 65 42 Q80 37 95 42" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.3"/>
+  <!-- BR text -->
+  <text x="50" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">BR</text>
+</svg>
