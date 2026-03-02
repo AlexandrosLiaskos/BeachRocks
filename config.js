@@ -1,6 +1,9 @@
 // Supabase Configuration for Beach Rocks Web Map
-const SUPABASE_URL = 'https://uhzhkmqodkulmcoausud.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoemhrbXFvZGt1bG1jb2F1c3VkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUyNzg3NzUsImV4cCI6MjA4MDg1NDc3NX0.aA5PusrMXuWbvNIStLCh8QwvK5est0KiWVAKEiQDDm0';
+// Credentials are injected at deploy time via GitHub Actions secrets.
+// For local development: replace the placeholders below with your actual values.
+// WARNING: Never commit real credentials — keep placeholders here in version control.
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
 
 // Initialize Supabase client
 (async function initializeSupabase() {
