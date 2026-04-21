@@ -195,7 +195,10 @@ class BeachRockMapApp {
         };
 
         if (welcomeModal) {
-            setTimeout(() => welcomeModal.classList.add('active'), 300);
+            const isEmbedded = new URLSearchParams(window.location.search).get('embed') === '1';
+            if (!isEmbedded) {
+                setTimeout(() => welcomeModal.classList.add('active'), 300);
+            }
             if (closeWelcome) closeWelcome.addEventListener('click', closeWelcomeModal);
             if (enterWebGIS) enterWebGIS.addEventListener('click', closeWelcomeModal);
             welcomeModal.addEventListener('click', (event) => {
